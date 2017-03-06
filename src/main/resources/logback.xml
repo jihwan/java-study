@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration >
+    <property name="logPattern" value="%date %-5level [%thread] %logger[%line] - %msg%n" />
+    <property name="log.dir" value="/home/zhwan/GITREPO/my-projects/amqp/rabbit-test/log" />
+    <!--<property name="log.dir" value="${logdir}" />-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${log.dir}/aaa.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${log.dir}/bak/%d{yyyy-MM-dd,aux}/aaa.%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>-->
+            <!--<maxFileSize>20MB</maxFileSize>-->
+            <!--<maxHistory>720</maxHistory>-->
+            <!--<totalSizeCap>1GB</totalSizeCap>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder>-->
+            <!--<pattern>${logPattern}</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+
+    <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${log.dir}/aaa.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--&lt;!&ndash;<fileNamePattern>${log.dir}/bak/${shop}/%d{yyyy-MM-dd,aux}/${eqp_type}/${SERVER_NAME}.${eqp_type}.%d{yyyy-MM-dd_HH}.%i.log.zip</fileNamePattern>&ndash;&gt;-->
+            <!--<fileNamePattern>${log.dir}/bak/%d{yyyy-MM-dd,aux}/aaa.%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>-->
+            <!--<maxHistory>720</maxHistory>-->
+            <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+                <!--<maxFileSize>20MB</maxFileSize>-->
+            <!--</timeBasedFileNamingAndTriggeringPolicy>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder>-->
+            <!--<pattern>${logPattern}</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+
+    <logger name="org.hibernate.SQL" level="debug" additivity="true" />
+    <logger name="org.hibernate.type" level="trace" additivity="true" />
+    <logger name="org.hibernate.type.descriptor.sql" level="trace" additivity="true" />
+
+    <logger name="org.springframework.orm.jpa" level="debug" additivity="true"/>
+
+
+    <!--<logger name="com.rabbitmq.client" level="trace" additivity="false">-->
+        <!--<appender-ref ref="FILE" />-->
+    <!--</logger>-->
+    <!--<logger name="org.springframework.amqp.rabbit.connection" level="trace" additivity="false">-->
+        <!--<appender-ref ref="FILE" />-->
+    <!--</logger>-->
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
