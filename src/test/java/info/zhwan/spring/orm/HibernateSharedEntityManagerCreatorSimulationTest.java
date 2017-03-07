@@ -17,6 +17,8 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.*;
 import org.springframework.context.annotation.*;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.data.repository.config.RepositoryConfigurationExtension;
+import org.springframework.data.repository.config.RepositoryConfigurationSource;
 import org.springframework.util.Assert;
 
 import java.lang.reflect.InvocationHandler;
@@ -83,9 +85,9 @@ public class HibernateSharedEntityManagerCreatorSimulationTest {
   }
 
   /**
-   * {@link org.springframework.orm.jpa.AbstractEntityManagerFactoryBean}
-   *
    * <p>bean 초기화시 native EntityManagerFactory 를 생성해 둔다.</p>
+   *
+   * @see org.springframework.orm.jpa.AbstractEntityManagerFactoryBean
    */
   static class FooFactoryBean implements FactoryBean<FooFactory>, InitializingBean {
 
@@ -113,14 +115,14 @@ public class HibernateSharedEntityManagerCreatorSimulationTest {
   }
 
   /**
-   * {@link javax.persistence.EntityManagerFactory}
+   * @see javax.persistence.EntityManagerFactory
    */
   interface FooFactory {
     Foo createFoo();
   }
 
   /**
-   * {@link org.hibernate.jpa.internal.EntityManagerFactoryImpl}
+   * @see org.hibernate.jpa.internal.EntityManagerFactoryImpl
    */
   static class FooFactoryImpl implements FooFactory {
     @Override
@@ -139,6 +141,13 @@ public class HibernateSharedEntityManagerCreatorSimulationTest {
    * client 에서는 {@link javax.persistence.EntityManager} 를 필요로 하는데, {@link org.springframework.orm.jpa.SharedEntityManagerCreator} 에서
    * porxy된 {@link javax.persistence.EntityManager} 를 돌려준다.
    * </p>
+   *
+   * <p>
+   *   {@link BeanFactoryPostProcessor} 를 이용하여, bean 설정정보를 변경할 수 있다.
+   *   여기에서는, 어떤 bean 이 존재 할 경우, 그 bean 을 이용하여, 다른 bean 을 등록한다.
+   * </p>
+   *
+   * @see org.springframework.data.jpa.repository.support.EntityManagerBeanDefinitionRegistrarPostProcessor
    */
   static class TestBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     @Override
@@ -164,6 +173,9 @@ public class HibernateSharedEntityManagerCreatorSimulationTest {
     }
   }
 
+  /**
+   * @see org.springframework.orm.jpa.SharedEntityManagerCreator
+   */
   static abstract class FooCreator {
     public static IFoo createFoo(final FooFactory fooFactory) {
 
@@ -192,6 +204,11 @@ public class HibernateSharedEntityManagerCreatorSimulationTest {
     }
   }
 
+  /**
+   * @see org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfigureRegistrar
+   * @see org.springframework.data.repository.config.RepositoryConfigurationDelegate#registerRepositoriesIn(BeanDefinitionRegistry, RepositoryConfigurationExtension)
+   * @see org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension#registerBeansForRoot(BeanDefinitionRegistry, RepositoryConfigurationSource)
+   */
   static class Registrar implements ImportBeanDefinitionRegistrar {
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
