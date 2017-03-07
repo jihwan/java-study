@@ -1,5 +1,9 @@
 package info.zhwan.orm.jpa.ch05;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,13 +15,15 @@ import java.util.Map;
 
 @Component
 @Transactional(readOnly = true)
-public class Tester {
+public class Tester implements InitializingBean, ApplicationContextAware {
 
-  private final EntityManager em;
+  private EntityManager em;
 
-  public Tester(EntityManager em) {
-    this.em = em;
-  }
+//  private final EntityManager em;
+//
+//  public Tester(EntityManager em) {
+//    this.em = em;
+//  }
 
   @Transactional(readOnly = false)
   public void initialize() throws Exception {
@@ -93,5 +99,18 @@ public class Tester {
     System.err.println("team is " + team);
 
 //    team.getMembers().forEach(System.out::println);
+  }
+
+  @Override
+  public void afterPropertiesSet() throws Exception {
+    EntityManager bean = this.applicationContext.getBean(EntityManager.class);
+    this.em = bean;;
+  }
+
+  ApplicationContext applicationContext;
+
+  @Override
+  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    this.applicationContext = applicationContext;
   }
 }
