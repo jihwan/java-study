@@ -29,6 +29,9 @@ public class Ch08CascadeMain {
 
       System.out.println("=====================================================");
       tester.addCascadeTest();
+
+      System.out.println("=====================================================");
+      tester.debug();
     }
   }
 
@@ -43,6 +46,7 @@ public class Ch08CascadeMain {
       Child child1 = new Child();
       Child child2 = new Child();
 
+      // 각 관계를 맺은 객체간 연관관계를 맺어 주어야만 FK 값이 들어간다.
       child1.setParent(parent);
       child2.setParent(parent);
       parent.getChilds().add(child1);
@@ -67,6 +71,12 @@ public class Ch08CascadeMain {
     public void addCascadeTest() {
       Parent parent = em.find(Parent.class, 4L);
       parent.getChilds().add(new Child());
+    }
+
+    public void debug() {
+      Child child = em.find(Child.class, 7L);
+      org.hibernate.Hibernate.initialize(child);
+      System.err.println("child table parent fk is null : " + child);
     }
   }
 }

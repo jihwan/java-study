@@ -16,4 +16,12 @@ public class Child {
 
   @ManyToOne @Setter
   private Parent parent;
+
+  @Override
+  public String toString() {
+    return "Child{" +
+      "id=" + id +
+      ", parent=" + parent +
+      '}';
+  }
 }
