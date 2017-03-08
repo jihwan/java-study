@@ -1,7 +1,5 @@
 package info.zhwan.orm.jpa.ch08.cascade;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,32 +12,33 @@ import javax.persistence.PersistenceContext;
 /**
  * @author zhwan
  */
-@SpringBootApplication @Transactional
-public class Ch08CascadeMain implements CommandLineRunner {
+@SpringBootApplication
+public class Ch08CascadeMain {
   public static void main(String[] args) {
     try (ConfigurableApplicationContext context = SpringApplication.run(Ch08CascadeMain.class, args)) {
+      CascadeTester tester = context.getBean(CascadeTester.class);
+
+      tester.insertCascadeInsert();
+
+      System.out.println("=====================================================");
+      tester.removeCascadeTest();
+
+      System.out.println("=====================================================");
+      tester.insertCascadeInsert();
+      tester.removeOrphanremovalTest();
+
+      System.out.println("=====================================================");
+      tester.addCascadeTest();
     }
   }
 
-  @Autowired CascadeTester tester;
-
-  @Override
-  public void run(String... args) throws Exception {
-    tester.insert();
-
-    System.out.println("=====================================================");
-    tester.remove();
-
-    System.out.println("=====================================================");
-    tester.add();
-  }
-
   @Component
+  @Transactional
   static class CascadeTester {
     @PersistenceContext
     EntityManager em;
 
-    void insert() {
+    public void insertCascadeInsert() {
       Parent parent = new Parent();
       Child child1 = new Child();
       Child child2 = new Child();
@@ -52,21 +51,22 @@ public class Ch08CascadeMain implements CommandLineRunner {
       em.persist(parent);
     }
 
-    void remove() {
+    public void removeCascadeTest() {
       Parent parent = em.find(Parent.class, 1L);
+      em.remove(parent); // cascade.remove 테스트
+    }
 
-//      em.remove(parent); // cascade.remove 테스트
-
+    public void removeOrphanremovalTest() {
+      Parent parent = em.find(Parent.class, 4L);
       parent.getChilds().clear(); // 고아객체 테스트
-
     }
 
     /**
      * 책 내용 처럼 되지 않는다. parent_id 가 null 임
      */
-    void add() {
-      Parent parent = em.find(Parent.class, 1L);
-      parent.getChilds().add( new Child() );
+    public void addCascadeTest() {
+      Parent parent = em.find(Parent.class, 4L);
+      parent.getChilds().add(new Child());
     }
   }
 }
