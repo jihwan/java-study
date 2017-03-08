@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * vm opion 에 -ea 를 넣을 것!!!
- * 
+ *
  * @author zhwan
  */
 @SpringBootApplication
@@ -24,12 +24,12 @@ public class Ch08CascadeMain {
       tester.insertCascadeInsert();
 
       System.out.println("=====================================================");
-      tester.removeCascadeTest();
+      tester.removeParentAndChild();
       tester.removeDebug(0, 0);
 
       System.out.println("=====================================================");
       tester.insertCascadeInsert();
-      tester.removeOrphanremovalTest();
+      tester.removeChildren();
       tester.removeDebug(1, 0);
 
       System.out.println("=====================================================");
@@ -60,14 +60,20 @@ public class Ch08CascadeMain {
       em.persist(parent);
     }
 
-    public void removeCascadeTest() {
+    /**
+     * cascade.remove 테스트
+     */
+    public void removeParentAndChild() {
       Parent parent = em.find(Parent.class, 1L);
-      em.remove(parent); // cascade.remove 테스트
+      em.remove(parent);
     }
 
-    public void removeOrphanremovalTest() {
+    /**
+     * 고아객체 테스트
+     */
+    public void removeChildren() {
       Parent parent = em.find(Parent.class, 4L);
-      parent.getChilds().clear(); // 고아객체 테스트
+      parent.getChilds().clear();
     }
 
     public void removeDebug(int parentCount, int childCount) {
