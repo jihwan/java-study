@@ -85,17 +85,20 @@ public class Ch08CascadeMain {
     }
 
     /**
-     * 책 내용 처럼 되지 않는다. parent_id 가 null 임
+     * 책 내용에는 (p. 313) addChild 라는 함수를 이용하는데, 아마 내부 코드에서 양방향 관계설정을 하는 편의 메소드 일 것이다.
+     * 역시, 관계 설정은 사용자의 몫임을 잊지 말자!!!
      */
     public void addCascadeTest() {
       Parent parent = em.find(Parent.class, 4L);
-      parent.getChilds().add(new Child());
+      Child child = new Child();
+      child.setParent(parent);
+      parent.getChilds().add(child);
     }
 
     public void debug() {
       Child child = em.find(Child.class, 7L);
       org.hibernate.Hibernate.initialize(child);
-      System.err.println("child table parent fk is null : " + child);
+      assert child.getParent() != null;
     }
   }
 }
