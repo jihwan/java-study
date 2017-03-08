@@ -8,8 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
+ * vm opion 에 -ea 를 넣을 것!!!
+ * 
  * @author zhwan
  */
 @SpringBootApplication
@@ -22,10 +25,12 @@ public class Ch08CascadeMain {
 
       System.out.println("=====================================================");
       tester.removeCascadeTest();
+      tester.removeDebug(0, 0);
 
       System.out.println("=====================================================");
       tester.insertCascadeInsert();
       tester.removeOrphanremovalTest();
+      tester.removeDebug(1, 0);
 
       System.out.println("=====================================================");
       tester.addCascadeTest();
@@ -63,6 +68,14 @@ public class Ch08CascadeMain {
     public void removeOrphanremovalTest() {
       Parent parent = em.find(Parent.class, 4L);
       parent.getChilds().clear(); // 고아객체 테스트
+    }
+
+    public void removeDebug(int parentCount, int childCount) {
+      List<Parent> parents = em.createQuery("select p from Parent p", Parent.class).getResultList();
+      assert parentCount == parents.size();
+
+      List<Child> children = em.createQuery("select c from Child c", Child.class).getResultList();
+      assert childCount == children.size();
     }
 
     /**
