@@ -10,6 +10,7 @@
         </encoder>
     </appender>
 
+    <!-- 최신 version 사용 시 (몇 version 부터 바뀌었는지는 확실치 않음) -->
     <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
         <!--<file>${log.dir}/aaa.log</file>-->
         <!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
@@ -23,7 +24,7 @@
         <!--</encoder>-->
     <!--</appender>-->
 
-
+    <!-- 과거 version 사용 시 -->
     <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
         <!--<file>${log.dir}/aaa.log</file>-->
         <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
