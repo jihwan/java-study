@@ -8,7 +8,7 @@ import javax.persistence.DiscriminatorValue;
  * @author zhwan
  */
 @DiscriminatorValue("B") @Getter
-public class Bool extends Item {
+public class Book extends Item {
   private String author;
   private String isbn;
 }
