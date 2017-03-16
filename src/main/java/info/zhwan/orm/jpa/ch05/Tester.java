@@ -47,7 +47,7 @@ public class Tester implements InitializingBean, ApplicationContextAware {
 
     Member member = em.find(Member.class, 2L, LockModeType.PESSIMISTIC_FORCE_INCREMENT);
 
-//    Map<String, Object> properties = new HashMap<>();7
+//    Map<String, Object> properties = new HashMap<>();
 //    properties.put("javax.persistence.lock.timeout", 1000);
 //    Member member = em.find(Member.class, 2L, LockModeType.PESSIMISTIC_WRITE, properties);
 
