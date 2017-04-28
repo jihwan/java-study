@@ -57,6 +57,14 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```
 
+사용자 관리 (
+    사용자 : 가입, 탈퇴, 조회, 수정
+    관리자 : 등록, 수정-권한.., 삭제, 조회
+  )
+  
+ 
+
+
 ## 현재 시스템의 단점
 
 사용자 인증 정보를 servlet session 으로 관리 하고 있으므로 재시작, 확장시 session 이 사라지는 취약점이 있다.
