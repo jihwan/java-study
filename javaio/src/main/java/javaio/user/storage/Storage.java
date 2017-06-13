@@ -1,5 +1,11 @@
 package javaio.user.storage;
 
-public interface Storage {
+import java.util.List;
 
+public interface Storage {
+	
+	void save(List<String> data);
+	void saveAll(List<List<String>> datas);
+	
+	List<String> find(String key);
 }
