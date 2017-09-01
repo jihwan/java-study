@@ -19,6 +19,7 @@ public class PointcutTransactionAspectConfig {
     return aspectOf;
   }
 
+  // 원하는 transaction 처리 전략을 정의 한다.
   TransactionAttributeSource transactionAttributeSource() {
     RuleBasedTransactionAttribute get = new RuleBasedTransactionAttribute();
     get.setReadOnly(true);

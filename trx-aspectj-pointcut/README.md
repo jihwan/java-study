@@ -1,5 +1,20 @@
 # AspectJ 모드 + pointcut 으로 jdbc Transaction 처리
 
+테스트는 두가지 입니다.
+
+### com.example package
+
+`com.example.demo.PointcutTransactionAspect` 에 대상이 되는 pointcut expression 을 수정하십시오.
+`com.example.demo.PointcutTransactionAspectConfig#transactionAttributeSource` 함수에 원하는 transaction 전략을 정의 하세요
+
+
+### com.springtest package
+
+`@EnableTrasactionManagement` 의 구현 방식을 모사하여 만든 것.
+
+구현상 코드 재활용이 불가능합니다. 단순히 spring @EnableTransactionManagement 기능 정도는 학습 할 수는 있겠네요.
+
+
 `mvn dependency:copy-dependencies` 를 이용하여, aspectjweaver 와 spring-instrument jar를 편한 곳에 복사 해 둔다. (-javaagent 옵션을 편하게 사용하기 위함)
 
 ## h2database

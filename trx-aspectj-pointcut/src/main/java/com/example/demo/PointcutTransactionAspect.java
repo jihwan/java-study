@@ -18,6 +18,7 @@ import org.springframework.util.StopWatch;
 @Aspect
 public class PointcutTransactionAspect extends TransactionAspectSupport implements DisposableBean {
 
+  // 원하는 pointcut expression 을 정의 한다
   @Pointcut("execution(* com.example..*Service.*(..))")
   void trxPointcut() {
   }
