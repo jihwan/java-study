@@ -1,5 +1,6 @@
 package kosta.java.io.user.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,12 @@ import kosta.java.io.storage.data.ColumnSchema;
 import kosta.java.io.storage.data.ParamData;
 import kosta.java.io.storage.data.ResultData;
 
-public class User {
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5844618919269723615L;
 	private String email; // id
 	private String name;
 
