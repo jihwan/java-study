@@ -7,10 +7,16 @@
 
 	<weaver options="-showWeaveInfo">
 		<include within="com.example..*"/>
+
+		<!-- test 용도 -->
+		<include within="com.springtest.demo..*"/>
 	</weaver>
 
 	<aspects>
 		<aspect name="com.example.demo.PointcutTransactionAspect"/>
+
+		<!-- test 용도 -->
+		<aspect name="com.springtest.trx.aspect.PointcutTransactionAspect"/>
 	</aspects>
 
 </aspectj>
