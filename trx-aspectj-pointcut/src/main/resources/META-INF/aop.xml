@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<!--
+	AspectJ load-time weaving config file to install common Spring aspects.
+-->
+<aspectj>
+
+	<weaver options="-showWeaveInfo">
+		<include within="com.example..*"/>
+	</weaver>
+
+	<aspects>
+		<aspect name="com.example.demo.PointcutTransactionAspect"/>
+	</aspects>
+
+</aspectj>
