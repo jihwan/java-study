@@ -11,39 +11,39 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @ComponentScan
-@EnableTransactionManagement(proxyTargetClass = true, mode =AdviceMode.ASPECTJ)
+@EnableTransactionManagement(proxyTargetClass = true, mode = AdviceMode.ASPECTJ)
 public class JdbcDemoDefaultApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		try( ConfigurableApplicationContext context = SpringApplication.run(JdbcDemoDefaultApplication.class, args); ) {
-		}
-	}
-	
-	@Autowired
-	FooService fooService;
+  public static void main(String[] args) {
+    try (ConfigurableApplicationContext context = SpringApplication.run(JdbcDemoDefaultApplication.class, args);) {
+    }
+  }
 
-	@Autowired
-	PointcutTransactionAspect trxAspect;
-	
-	@Override
-	public void run(String... args) throws Exception {
-		
-		System.out.println( "***********" + trxAspect );
-		
-		System.out.println("======================================================== start");
-		
-		fooService.selectMethod1();
-		System.out.println("==================");
-		
-		fooService.helloGo();
-		System.out.println("==================");
-		
-		fooService.insertMethod1();
-		System.out.println("==================");
-		
-		fooService.insertMethod2();
-		System.out.println("==================");
-		
-		System.out.println("======================================================== end");
-	}
+  @Autowired
+  FooService fooService;
+
+  @Autowired
+  PointcutTransactionAspect trxAspect;
+
+  @Override
+  public void run(String... args) throws Exception {
+
+    System.out.println("***********" + trxAspect);
+
+    System.out.println("======================================================== start");
+
+    fooService.selectMethod1();
+    System.out.println("==================");
+
+    fooService.helloGo();
+    System.out.println("==================");
+
+    fooService.insertMethod1();
+    System.out.println("==================");
+
+    fooService.insertMethod2();
+    System.out.println("==================");
+
+    System.out.println("======================================================== end");
+  }
 }
