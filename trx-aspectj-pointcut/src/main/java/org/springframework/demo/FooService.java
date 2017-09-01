@@ -1,8 +1,9 @@
-package com.springtest.demo;
+package org.springframework.demo;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class FooService {
 
   // self invoke test
