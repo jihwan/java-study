@@ -6,18 +6,17 @@
 <aspectj>
 
 	<weaver options="-showWeaveInfo">
-		<!--<include within="com.example..*"/>-->
+		<include within="com.example..*"/>
 
 		<!-- test 용도 -->
-		<include within="org.springframework.demo..*"/>
-		<!--<include within="org.test..*"/>-->
+		<!--<include within="org.springframework.demo..*"/>-->
 	</weaver>
 
 	<aspects>
-		<!--<aspect name="com.example.demo.ServiceAnnotationTransactionAspect"/>-->
+		<aspect name="com.example.demo.PointcutTransactionAspect"/>
 
 		<!-- test 용도 -->
-		<aspect name="org.springframework.transaction.aspect.ServiceAnnotationTransactionAspect"/>
+		<!--<aspect name="org.springframework.transaction.aspect.ServiceAnnotationTransactionAspect"/>-->
 	</aspects>
 
 </aspectj>
