@@ -27,7 +27,8 @@
 		main class 가 두개여서 지정 하였다
 		https://docs.spring.io/spring-boot/docs/1.5.6.RELEASE/maven-plugin/
 		-->
-		<start-class>com.example.demo.JdbcDemoDefaultApplication</start-class>
+		<start-class>com.example.demo2.JdbcDemoDefaultApplication2</start-class>
+		<!--<start-class>com.example.demo.JdbcDemoDefaultApplication</start-class>-->
 		<aspectj.version>1.8.10</aspectj.version>
 	</properties>
 
@@ -54,15 +55,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>provided</scope>
 		</dependency>
-
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework.boot</groupId> -->
-		<!-- <artifactId>spring-boot-starter-test</artifactId> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
 	</dependencies>
 
 	<build>
