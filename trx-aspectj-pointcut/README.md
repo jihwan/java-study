@@ -1,21 +1,60 @@
 # AspectJ 모드 + pointcut 으로 jdbc Transaction 처리
 
-테스트는 두가지 입니다.
+구현 테스트는 총 3 종류.
 
-### com.example package
+> `mvn dependency:copy-dependencies` 를 이용하여, aspectjweaver 와 spring-instrument jar를 편한 곳에 복사 해 둔다. (-javaagent 옵션을 편하게 사용하기 위함)
 
+## com.example.demo package
+
+`org.springframework.transaction.aspectj.AnnotationTransactionAspect` 코드를 참고하여
+직접 `org.springframework.transaction.interceptor.TransactionAspectSupport` 확장 구현.
 `com.example.demo.PointcutTransactionAspect` 에 대상이 되는 pointcut expression 을 수정하십시오.
 `com.example.demo.PointcutTransactionAspectConfig#transactionAttributeSource` 함수에 원하는 transaction 전략을 정의 하세요
 
+- terminal 에서 아래와 같이 실행 및 테스트
+```bash
+mvn clean package
 
-### com.springtest package
+java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-SNAPSHOT.jar
+```
+
+- eclipse 에서 실행시 vm arguments
+```eclipse
+
+-Dorg.aspectj.weaver.loadtime.configuration=${project_loc}/aspectjxmls/demo1-aop.xml
+-javaagent:${project_loc}/aspectjweaver-1.8.10.jar
+
+```
+
+## com.example.demo2 package
+
+**이 사용법 추천**
+
+`org.springframework.transaction.aspectj.AnnotationTransactionAspect` 코드를 참고하여
+직접 `org.springframework.transaction.aspectj.AbstractTransactionAspect` 확장 구현.
+`com.example.demo2.PointcutTransactionAspect2` 에 대상이 되는 pointcut expression 을 수정하십시오.
+`com.example.demo.PointcutTransactionAspectConfig#transactionAttributeSource` 함수에 원하는 transaction 전략을 정의 하세요
+
+- terminal 에서 아래와 같이 실행 및 테스트
+```bash
+mvn -Pdemo2 clean package
+
+java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-SNAPSHOT.jar
+```
+
+- eclipse 에서 실행시 vm arguments
+```eclipse
+
+-Dorg.aspectj.weaver.loadtime.configuration=${project_loc}/aspectjxmls/demo2-aop.xml
+-javaagent:${project_loc}/aspectjweaver-1.8.10.jar
+
+```
+
+## org.springframework package
 
 `@EnableTrasactionManagement` 의 구현 방식을 모사하여 만든 것.
+spring @EnableTransactionManagement 기능 학습 용도.
 
-구현상 코드 재활용이 불가능합니다. 단순히 spring @EnableTransactionManagement 기능 정도는 학습 할 수는 있겠네요.
-
-
-`mvn dependency:copy-dependencies` 를 이용하여, aspectjweaver 와 spring-instrument jar를 편한 곳에 복사 해 둔다. (-javaagent 옵션을 편하게 사용하기 위함)
 
 ## h2database
 
@@ -43,7 +82,7 @@ java -javaagent:aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-SN
 
 @EnableTransactionManagement ASPECTJ 모드 사용시 @Transaction annotation driven transaction 처리를 한다.
 
-@Transactional 은 org.springframework.transaction.annotation.Transactional 과 javax.transaction.Transactional 가 있는데, 내부적으로 둘다 지원하는 것 같음.(확인 필요)
+@Transactional 은 org.springframework.transaction.annotation.Transactional 과 javax.transaction.Transactional 가 있는데, 내부적으로 둘다 지원 한다.
 
 @Transactional 기반 Transaction 처리는 spring-aspects 모듈의 AnnotationTransactionAspect 에서 수행.
 

@@ -24,6 +24,6 @@ nbdist/
 .nb-gradle/
 
 
-
+_ajdump/
 aspectjweaver-1.8.10.jar
 spring-instrument-4.3.10.RELEASE.jar

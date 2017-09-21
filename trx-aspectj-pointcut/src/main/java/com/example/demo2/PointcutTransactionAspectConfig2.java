@@ -22,7 +22,6 @@ public class PointcutTransactionAspectConfig2 {
 
   @Bean
   PointcutTransactionAspect2 trxAspect() {
-//    PointcutTransactionAspect2 aspectOf = org.aspectj.lang.Aspects.aspectOf(PointcutTransactionAspect2.class, transactionAttributeSource());
     PointcutTransactionAspect2 aspectOf = org.aspectj.lang.Aspects.aspectOf(PointcutTransactionAspect2.class);
     aspectOf.setTransactionManager(transactionManager);
     aspectOf.setTransactionAttributeSource(transactionAttributeSource());

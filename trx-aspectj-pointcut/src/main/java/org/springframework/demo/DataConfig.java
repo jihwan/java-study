@@ -14,8 +14,6 @@ import org.springframework.transaction.interceptor.TransactionAttributeSource;
 
 import javax.sql.DataSource;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 @Configuration
 public class DataConfig implements PointcutTransactionManagementConfigurer {

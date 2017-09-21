@@ -22,15 +22,43 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-
-		<!--
-		main class 가 두개여서 지정 하였다
-		https://docs.spring.io/spring-boot/docs/1.5.6.RELEASE/maven-plugin/
-		-->
-		<start-class>com.example.demo2.JdbcDemoDefaultApplication2</start-class>
-		<!--<start-class>com.example.demo.JdbcDemoDefaultApplication</start-class>-->
+		
 		<aspectj.version>1.8.10</aspectj.version>
 	</properties>
+
+
+	<!--
+	main class n개여서 지정 하였다
+	https://docs.spring.io/spring-boot/docs/1.5.6.RELEASE/maven-plugin/
+	-->
+	<profiles>
+		<profile>
+			<id>demo1</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<start-class>com.example.demo.JdbcDemoDefaultApplication</start-class>
+				<aop-xml>demo1</aop-xml>
+			</properties>
+		</profile>
+		<profile>
+			<id>demo2</id>
+			<properties>
+				<start-class>com.example.demo2.JdbcDemoDefaultApplication2</start-class>
+				<aop-xml>demo2</aop-xml>
+			</properties>
+		</profile>
+		<profile>
+			<id>demo3</id>
+			<properties>
+				<start-class>org.springframework.demo.CustomEnableTrxMgrTestApplication</start-class>
+				<aop-xml>demo3</aop-xml>
+			</properties>
+		</profile>
+	</profiles>
+
+
 
 	<dependencies>
 		<dependency>
@@ -65,9 +93,27 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>${start-class}</mainClass>
-                    <executable>false</executable>
+					<executable>false</executable>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-assets</id>
+						<phase>compile</phase>
+						<configuration>
+							<target>
+								<copy file="${basedir}/aspectjxmls/${aop-xml}-aop.xml" tofile="${project.build.outputDirectory}/META-INF/aop.xml" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>			
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

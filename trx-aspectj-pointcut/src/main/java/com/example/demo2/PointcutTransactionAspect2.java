@@ -4,8 +4,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.transaction.aspectj.AbstractTransactionAspect;
 import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
-import org.springframework.transaction.interceptor.TransactionAttributeSource;
-
 
 /**
  * @see AnnotationTransactionAspect

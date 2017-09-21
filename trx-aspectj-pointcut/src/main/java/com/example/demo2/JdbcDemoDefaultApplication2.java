@@ -6,15 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AdviceMode;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = FooService.class)
 @EnableTransactionManagement(proxyTargetClass = true, mode = AdviceMode.ASPECTJ)
 public class JdbcDemoDefaultApplication2 implements CommandLineRunner {
 
   public static void main(String[] args) {
+//  	System.setProperty("org.aspectj.weaver.loadtime.configuration", "META-INF/demo2-aop.xml");
+  	
     try (ConfigurableApplicationContext context = SpringApplication.run(JdbcDemoDefaultApplication2.class, args);) {
     }
   }

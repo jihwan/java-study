@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+	AspectJ load-time weaving config file to install common Spring aspects.
+	
+	https://eclipse.org/aspectj/doc/next/devguide/ltw-configuration.html
+-->
+<aspectj>
+
+	<weaver options="-showWeaveInfo">
+		<include within="com.example.demo2..*"/>
+		
+		<!-- test or dev -->
+		<dump within="com.example.demo2..*" />		
+	</weaver>
+
+	<aspects>
+		<aspect name="com.example.demo2.PointcutTransactionAspect2"/>
+	</aspects>
+
+</aspectj>

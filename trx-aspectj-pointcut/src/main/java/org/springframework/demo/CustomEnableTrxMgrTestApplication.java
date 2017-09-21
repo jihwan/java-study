@@ -15,6 +15,9 @@ import org.test.BarService;
 public class CustomEnableTrxMgrTestApplication implements CommandLineRunner {
 
   public static void main(String[] args) {
+  	
+//  	System.setProperty("org.aspectj.weaver.loadtime.configuration", "META-INF/enable-spring-aop.xml");
+  	
     try (ConfigurableApplicationContext context = SpringApplication.run(CustomEnableTrxMgrTestApplication.class, args);) {
       // for (String bean : context.getBeanDefinitionNames()) {
       // System.err.println(bean);

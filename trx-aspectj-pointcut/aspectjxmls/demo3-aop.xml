@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+	AspectJ load-time weaving config file to install common Spring aspects.
+-->
+<aspectj>
+
+	<weaver options="-showWeaveInfo">
+	
+		<!-- test 용도 -->
+		<include within="org.springframework.demo..*"/>
+		<include within="org.test..*" />
+		
+		<!-- test or dev -->
+		<dump within="org..*" />		
+	</weaver>
+
+	<aspects>
+		<!-- test 용도 -->
+		<aspect name="org.springframework.transaction.aspect.ServiceAnnotationTransactionAspect"/>
+	</aspects>
+
+</aspectj>
