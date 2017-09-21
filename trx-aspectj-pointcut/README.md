@@ -21,7 +21,15 @@ java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-
 - eclipse 에서 실행시 vm arguments
 ```eclipse
 
--Dorg.aspectj.weaver.loadtime.configuration=${project_loc}/aspectjxmls/demo1-aop.xml
+-Dorg.aspectj.weaver.loadtime.configuration=file:${project_loc}/aspectjxmls/demo1-aop.xml
+-javaagent:${project_loc}/aspectjweaver-1.8.10.jar
+
+```
+
+- intellij 에서 실행시 vm arguments (경로를 직접 넣어;;;)
+```intellij
+
+-Dorg.aspectj.weaver.loadtime.configuration=file:/a/b/c/d/aspectjxmls/demo1-aop.xml
 -javaagent:${project_loc}/aspectjweaver-1.8.10.jar
 
 ```
@@ -45,7 +53,15 @@ java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-
 - eclipse 에서 실행시 vm arguments
 ```eclipse
 
--Dorg.aspectj.weaver.loadtime.configuration=${project_loc}/aspectjxmls/demo2-aop.xml
+-Dorg.aspectj.weaver.loadtime.configuration=file:${project_loc}/aspectjxmls/demo2-aop.xml
+-javaagent:${project_loc}/aspectjweaver-1.8.10.jar
+
+```
+
+- intellij 에서 실행시 vm arguments (경로를 직접 넣어;;;)
+```intellij
+
+-Dorg.aspectj.weaver.loadtime.configuration=file:/a/b/c/d/aspectjxmls/demo2-aop.xml
 -javaagent:${project_loc}/aspectjweaver-1.8.10.jar
 
 ```
@@ -66,7 +82,15 @@ java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-
 - eclipse 에서 실행시 vm arguments
 ```eclipse
 
--Dorg.aspectj.weaver.loadtime.configuration=${project_loc}/aspectjxmls/demo3-aop.xml
+-Dorg.aspectj.weaver.loadtime.configuration=file:${project_loc}/aspectjxmls/demo3-aop.xml
+-javaagent:${project_loc}/aspectjweaver-1.8.10.jar
+
+```
+
+- intellij 에서 실행시 vm arguments (경로를 직접 넣어;;;)
+```intellij
+
+-Dorg.aspectj.weaver.loadtime.configuration=file:/a/b/c/d/aspectjxmls/demo3-aop.xml
 -javaagent:${project_loc}/aspectjweaver-1.8.10.jar
 
 ```
