@@ -4,6 +4,24 @@
 
 > `mvn dependency:copy-dependencies` 를 이용하여, aspectjweaver 와 spring-instrument jar를 편한 곳에 복사 해 둔다. (-javaagent 옵션을 편하게 사용하기 위함)
 
+## h2database
+
+간편한 테스트를 위한 h2database 이용
+
+[download](http://h2database.com/html/download.html)
+
+- windows
+
+```bat
+> h2w.bat 
+```
+
+- x
+
+```bash
+$ ./h2.sh
+```
+
 ## com.example.demo package
 
 `org.springframework.transaction.aspectj.AnnotationTransactionAspect` 코드를 참고하여
@@ -95,9 +113,6 @@ java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-
 
 ```
 
-## h2database
-
-[download](http://h2database.com/html/download.html)
 
 ## LTW 방식
 
@@ -167,3 +182,16 @@ META-INF/aop.xml 파일에 아래와 같은 정보를 기재.
 xml 방식 빈 설정시 `factory-method=aspectOf` 를 명시 해 준다.
 
 java config 방식 빈 설정은 `TrxAspectConfig.java` 파일 참조
+
+## intellij AspectJ Compiler 설정 방법
+
+
+Build, Execution, Deployment
+  -> Compiler
+    -> Java Compiler
+
+Use compiler
+  => Ajc
+
+Ajc Options
+  => 본인은 maven을 이용하여 ~/.m2/repository/org/aspectj/aspectjtools/1.8.10/aspectjtools-1.8.10.jar
