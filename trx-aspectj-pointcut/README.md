@@ -56,6 +56,21 @@ java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-
 spring @EnableTransactionManagement 기능 학습 용도.
 
 
+- terminal 에서 아래와 같이 실행 및 테스트
+```bash
+mvn -Pdemo3 clean package
+
+java -javaagent:./aspectjweaver-1.8.10.jar -jar target/trx-aspectj-pointcut-1.0-SNAPSHOT.jar
+```
+
+- eclipse 에서 실행시 vm arguments
+```eclipse
+
+-Dorg.aspectj.weaver.loadtime.configuration=${project_loc}/aspectjxmls/demo3-aop.xml
+-javaagent:${project_loc}/aspectjweaver-1.8.10.jar
+
+```
+
 ## h2database
 
 [download](http://h2database.com/html/download.html)
